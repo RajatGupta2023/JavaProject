@@ -1,32 +1,41 @@
 package bank;
 
 public class CustomerAccount {
-	private String bankAccountNumber = "123456789";
-	private String customerName = "Rajat";
-	private double currentBalance = 4560.20;
-	private int atmPin = 6686;
-	private String password = "Password123";
+	private String bankAccountNumber;
+	private String customerName;
+	private double currentBalance;
+	private String atmPin;
+	private String password;
 
-	int getAtmPin() {
+	public CustomerAccount(String bankAccountNumber, String customerName, double currentBalance, String atmPin,
+			String password) {
+		this.bankAccountNumber = bankAccountNumber;
+		this.customerName = customerName;
+		this.currentBalance = currentBalance;
+		this.atmPin = atmPin;
+		this.password = password;
+	}
+
+	public String getAtmPin() {
 
 		return atmPin;
 
 	}
 
-	String getPassword() {
+	public String getPassword() {
 		return password;
 	}
 
-	String getAccountNumber() {
+	public String getAccountNumber() {
 		return bankAccountNumber;
 
 	}
 
-	String getCustomerName() {
+	public String getCustomerName() {
 		return customerName;
 	}
 
-	double getCurrentBalance() {
+	public double getCurrentBalance() {
 		return currentBalance;
 	}
 }

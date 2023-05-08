@@ -2,43 +2,59 @@ package bank;
 
 import java.util.Scanner;
 
-public class OnlineBanking extends BankOperations{
+public class OnlineBanking extends BankOperations {
 	Scanner sc = new Scanner(System.in);
-	void selectOperation() {
-		System.out.println("Please Select the operation you want to perform at online portal \n withdraw \n deposit \n balance");
-		String operation = sc.next();
-		switch (operation) {
-		case "withdraw": {
-			withdraw();
-			break;
+
+	@Override
+	public void withdraw(double currentBalance) {
+		System.out.println("Please enter withdraw amount");
+		int withdrawAmount = sc.nextInt();
+		if (withdrawAmount > currentBalance) {
+			System.out.println("Not enough Funds");
+		} else {
+			currentBalance -= withdrawAmount;
 		}
-		case "deposit": {
-			deposit();
-			break;
-		}
-		case "balance": {
-			viewBalance();
-			break;
-		}
-		default:
-			System.out.println("Please select from the options ");
-			break;
+		System.out.println("Your current balance is " + currentBalance);
+	}
+
+	@Override
+	public void deposit(double currentBalance) {
+		System.out.println("Please enter deposit amount");
+		int depositAmount = sc.nextInt();
+		currentBalance += depositAmount;
+
+		System.out.println("Your current balance is " + currentBalance);
+	}
+
+	@Override
+	public void viewBalance(double currentBalance) {
+		System.out.println("Your current balance is " + currentBalance);
+
+	}
+
+	@Override
+	public void changePinPassword(String password) {
+		char[] specialChars = { '&', '$', '@' };
+		boolean isPresent = false;
+		System.out.println("Please enter new password");
+		String newPassword = sc.next();
+		if (newPassword.equals(password)) {
+			System.out.println("You entered old password");
 
 		}
+
+		for (int i = 0; i < specialChars.length; i++) {
+			if (newPassword.contains(Character.toString(specialChars[i]))) {
+				isPresent = true;
+				break;
+			}
+		}
+		if (newPassword.length() >= 8 & (isPresent)) {
+			password = newPassword;
+
+		} else {
+			System.out.println("Please enter atleast 8 characters with special characters password");
+		}
+
 	}
-//	@Override
-//	void withdraw() {
-//		// TODO Auto-generated method stub
-//		super.withdraw();
-//	}
-//	@Override
-//	void deposit() {
-//		// TODO Auto-generated method stub
-//		super.deposit();
-//	}
-//	@Override
-//	void viewBalance() {
-//		// TODO Auto-generated method stub
-//		super.viewBalance();
-//	}
 }
